@@ -1,6 +1,6 @@
 function p = posEarth(t)
 
-r  = 149597870;  % Mittlerer Bahnradius Erde
+r  = 149597870*10^3;  % Mittlerer Bahnradius Erde
 T = 365.256; % Umlaufzeit Erde | Tage
 
 w = 2*pi / T;

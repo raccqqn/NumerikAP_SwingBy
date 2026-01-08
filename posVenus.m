@@ -1,6 +1,6 @@
 function p = posVenus(t)
 
-r  = 108208930;  % Mittlerer Bahnradius Venus  
+r  = 108208930*10^3;  % Mittlerer Bahnradius Venus  
 T = 224.701; % Umlaufzeit | Tage
 
 w = 2*pi / T;
