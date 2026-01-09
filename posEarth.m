@@ -5,8 +5,10 @@ T = 365.256; % Umlaufzeit Erde | Tage
 
 w = 2*pi / T;
 
-x = r * cos(w * t);
-y = r * sin(w * t);
+phi0 = 0.7724;
+
+x = r * cos(w * t + phi0);
+y = r * sin(w * t + phi0);
 p = [x(:), y(:)];
 
 end

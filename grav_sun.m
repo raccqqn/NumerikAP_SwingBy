@@ -1,6 +1,6 @@
 function dydt = grav_sun(t, y)
 
-G = 6.67 * 10^-11;  %Gravitationskonstante
+G = 6.67 * 10^-11 * (86400^2);  %Gravitationskonstante mit Tagen
 M = 1.99 * 10^30;   %Sonnenmasse
 
 r = y(1:2);         %Abstand und Geschwindigkeit aus y speichern

@@ -1,6 +1,6 @@
 function [dydt, a_S, a_E, a_V] = grav_calc(t, y)
 
-G = 6.67 * 10^-11;  %Gravitationskonstante
+G = 6.67 * 10^-11 * (86400^2);  %Gravitationskonstante mit Tagen
 
 M_S = 1.988 * 10^30;   %Sonnenmasse
 M_E = 5.9722 * 10^24; %Erdmasse
