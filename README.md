@@ -1,2 +1,6 @@
 # NumerikAP_SwingBy
-Abschlussprojekt der VO Numerik am MCI Innsbruck
+Abschlussprojekt von Urs Müller, Joachim Spitaler und Leonie Graf 
+für die VO Numerik im 3. Semester des Bachelorstudiums Mechatronik am MCI Innsbruck. 
+
+Teamwork makes the dream work.
+Stay positive. 
