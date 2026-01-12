@@ -1,14 +1,14 @@
-function diff = flybyV_dist(angle, v0, target_dist)
+function diff = flybyV_dist(angle, v0, phi0M, target_dist)
     
     %Startbedingungen über ausgelagerte Funktion berechnen
     [pos, v0_vec] = v0_calc(v0, angle);
     y0 = [pos(:); v0_vec(:)];
     
     %Optionen festlegen, Simulation starten
-    options = odeset('AbsTol',1e-14, 'RelTol',1e-12, 'Events', @swinger);
+    options = odeset('AbsTol',1e-14, 'RelTol',1e-12, 'Events', @(t,y) swinger(t,y,target_dist));
     tspan = [0, 500];   
     
-    [t, y, te, ye, ie] = ode113(@grav_calc, tspan, y0, options);
+    [t, y, te, ye, ie] = ode113(@(t,y) grav_calc(t,y,phi0M), tspan, y0, options);
     
     %Minimalen Abstand bestimmen
     %Wenn Event ausgelöst wurde, ist ye(1:2) der Ort bei 20.000km
@@ -21,8 +21,7 @@ function diff = flybyV_dist(angle, v0, target_dist)
     diff = min_dist - target_dist;          %Diff zurückgeben, fzero will: Dieser Wert = 0
 end
 
-function [val, term, dir] = swinger(t, y)
-    target = 14000 * 10^3;  %Zieldistanz in Metern
+function [val, term, dir] = swinger(t, y, target)
 
     rS = y(1:2)';           %Als Zeilenvektor speichern
     rV = posVenus(t);

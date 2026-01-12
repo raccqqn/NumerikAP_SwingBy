@@ -1,4 +1,4 @@
-function [dydt, a_S, a_E, a_V] = grav_calc(t, y)
+function [dydt, a_S, a_E, a_V] = grav_calc(t, y, phi0M)
 
 G = 6.67 * 10^-11 * (86400^2);  %Gravitationskonstante mit Tagen
 
@@ -13,7 +13,7 @@ v = y(3:4);
 %Position der Planeten am aktuellen Zeitpunkt berechnen
 rabs_E = r - posEarth(t)';  
 rabs_V = r - posVenus(t)';
-rabs_M = r - posMars(t, -1.63)';
+rabs_M = r - posMars(t, phi0M)';
 
 %Beschleunigungen der einzelnen Körper berechnen
 a_S = -(G*M_S / norm(r)^3) * r;                     %Am Nullpunkt                 
