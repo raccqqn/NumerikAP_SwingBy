@@ -13,7 +13,7 @@ v = y(3:4);
 %Position der Planeten am aktuellen Zeitpunkt berechnen
 rabs_E = r - posEarth(t)';  
 rabs_V = r - posVenus(t)';
-rabs_M = r - posMars(t)';
+rabs_M = r - posMars(t, -1.63)';
 
 %Beschleunigungen der einzelnen Körper berechnen
 a_S = -(G*M_S / norm(r)^3) * r;                     %Am Nullpunkt                 
