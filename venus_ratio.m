@@ -6,5 +6,6 @@ function val = venus_ratio(d, phi0M, rV)
     [~, a_S, a_E, a_V] = grav_calc(0, y, phi0M);
     a_total = a_S + a_E + a_V; 
 
-    val = norm(a_V)/norm(a_total) - 0.01; %bei erreichen von 1% Nullstelle
+    %bei erreichen von 1% Nullstelle
+    val = norm(a_V)/norm(a_total) - 0.01; 
 end

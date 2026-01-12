@@ -19,5 +19,5 @@ function [diff, min_dist, t_min] = flybyM_dist(phi0, angle, v0)
     [min_dist, idx] = min(dist_vec);
     t_min = t(idx);
     
-    diff = min_dist;          %Diff zurückgeben, fzero will: Dieser Wert = 0
+    diff = min_dist;          %Diff zurückgeben
 end
