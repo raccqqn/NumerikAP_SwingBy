@@ -22,7 +22,7 @@ function diff = flybyV_dist(angle, v0, target_dist)
 end
 
 function [val, term, dir] = swinger(t, y)
-    target = 20000 * 10^3;  %Zieldistanz in Metern
+    target = 16000 * 10^3;  %Zieldistanz in Metern
 
     rS = y(1:2)';           %Als Zeilenvektor speichern
     rV = posVenus(t);
