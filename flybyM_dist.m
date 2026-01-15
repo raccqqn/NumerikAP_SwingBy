@@ -5,7 +5,7 @@ function [diff, min_dist, t_min] = flybyM_dist(phi0, angle, v0)
     y0 = [pos(:); v0_vec(:)];
     
     %Optionen festlegen, Simulation starten
-    options = odeset('AbsTol',1e-10, 'RelTol',1e-8, "Events", @(t,y) distanceMars(t, y, phi0, 1000 * 10^3));
+    options = odeset('AbsTol',1e-10, 'RelTol',1e-8, "Events", @(t,y) distanceMars(t, y, phi0, 10000 * 10^3));
     tspan = [0, 500];   
     
     [t, y] = ode15s(@(t,y) grav_calc(t,y,phi0), tspan, y0, options);
