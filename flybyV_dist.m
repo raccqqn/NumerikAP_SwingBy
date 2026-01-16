@@ -5,7 +5,7 @@ function diff = flybyV_dist(angle, v0, phi0M, target_dist)
     y0 = [pos(:); v0_vec(:)];
     
     %Optionen festlegen, Simulation starten
-    options = odeset('AbsTol',1e-14, 'RelTol',1e-12, 'Events', @(t,y) swinger(t,y,target_dist));
+    options = odeset('AbsTol',1e-10, 'RelTol',1e-8, 'Events', @(t,y) swinger(t,y,target_dist));
     tspan = [0, 500];   
     
     [t, y] = ode113(@(t,y) grav_calc(t,y,phi0M), tspan, y0, options);

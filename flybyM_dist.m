@@ -8,7 +8,7 @@ function [diff, min_dist, t_min] = flybyM_dist(phi0, angle, v0)
     options = odeset('AbsTol',1e-10, 'RelTol',1e-8, "Events", @(t,y) distanceMars(t, y, phi0, 10000 * 10^3));
     tspan = [0, 500];   
     
-    [t, y] = ode15s(@(t,y) grav_calc(t,y,phi0), tspan, y0, options);
+    [t, y] = ode113(@(t,y) grav_calc(t,y,phi0), tspan, y0, options);
     
     rS = y(:,1:2);
     rV = posMars(t, phi0);
