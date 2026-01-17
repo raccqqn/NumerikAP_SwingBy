@@ -5,6 +5,7 @@ T = 365.256; % Umlaufzeit Erde | Tage
 
 w = 2*pi / T;
 
+%Erde um ~45° positiv verschoben
 phi0 = 0.7724;
 
 x = r * cos(w * t + phi0);
