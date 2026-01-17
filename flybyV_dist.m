@@ -1,4 +1,4 @@
-function diff = flybyV_dist(angle, v0, phi0M, target_dist)
+function [diff, min_dist, t_min] = flybyV_dist(angle, v0, phi0M, target_dist)
     
     %Startbedingungen über ausgelagerte Funktion berechnen
     [pos, v0_vec] = v0_calc(v0, angle);
@@ -16,8 +16,9 @@ function diff = flybyV_dist(angle, v0, phi0M, target_dist)
     rS = y(:,1:2);
     rV = posVenus(t);
     dist_vec = vecnorm(rV - rS, 2, 2);      %Normierter Vektor, Mindestabstand speichern
-    min_dist = min(dist_vec);
+    [min_dist, idx] = min(dist_vec);
     
+    t_min = t(idx);
     diff = min_dist - target_dist;          %Diff zurückgeben, fzero will: Dieser Wert = 0
 end
 
