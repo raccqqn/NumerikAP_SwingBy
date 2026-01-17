@@ -11,8 +11,8 @@ function [diff, min_dist, t_min] = flybyM_dist(phi0, angle, v0)
     [t, y] = ode113(@(t,y) grav_calc(t,y,phi0), tspan, y0, options);
     
     rS = y(:,1:2);
-    rV = posMars(t, phi0);
-    dist_vec = vecnorm(rV - rS, 2, 2);      %Normierter Vektor, Mindestabstand speichern
+    rM = posMars(t, phi0);
+    dist_vec = vecnorm(rM - rS, 2, 2);      %Normierter Vektor, Mindestabstand speichern
     [min_dist, idx] = min(dist_vec);
     t_min = t(idx);
     
@@ -22,8 +22,8 @@ end
 function [val, term, dir] = distanceMars(t, y, bestphi, target)
 
     rS = y(1:2)';           %Als Zeilenvektor speichern
-    rV = posMars(t, bestphi);
-    dist = norm(rV - rS);
+    rM = posMars(t, bestphi);
+    dist = norm(rM - rS);
 
     val = dist - target;                  %Toleranz, ode45 löst System nur an bestimmten Zeitschritten
     term = 1;                             %Stoppen

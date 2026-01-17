@@ -12,6 +12,6 @@ r = vecnorm(pos, 2, 2);           %Betrag des Vektors, Sonne immer an 0-Punkt
 pot = -(G*m*M) ./ r;              %Potentielle Energie berechnen
 
 sum = kin + pot;                  %Gesamtenergie berechnen
-%Gesamtenergie nicht in Joule sondern in Energie pro Tag, damit ganzes System
+%Gesamtenergie nicht in Joule sondern in "(kg*m^2)/(Tag^2)", damit ganzes System
 %konsistent ist
 end
