@@ -4,31 +4,37 @@ function [diff, min_dist, t_min] = flybyV_dist(angle, v0, phi0M, target_dist)
     [pos, v0_vec] = v0_calc(v0, angle);
     y0 = [pos(:); v0_vec(:)];
     
-    %Optionen festlegen, Simulation starten
+    %Optionen festlegen - Stop condition, Feste Zeitspanne
     options = odeset('AbsTol',1e-10, 'RelTol',1e-8, 'Events', @(t,y) swinger(t,y,target_dist));
     tspan = [0, 500];   
     
+    %Flug durchführen
     [t, y] = ode113(@(t,y) grav_calc(t,y,phi0M), tspan, y0, options);
-    
-    %Minimalen Abstand bestimmen
-    %Wenn Event ausgelöst wurde, ist ye(1:2) der Ort bei 20.000km
-    %Fzero sucht: Abstand - Ziel
+
+    %Mars, Sonden - Positionen speichern
     rS = y(:,1:2);
     rV = posVenus(t);
-    dist_vec = vecnorm(rV - rS, 2, 2);      %Normierter Vektor, Mindestabstand speichern
+
+    %Distanz über normierten Vektor bestimmen, Mindestabstand speichern
+    dist_vec = vecnorm(rV - rS, 2, 2);     
     [min_dist, idx] = min(dist_vec);
     
+    %Entsprechenden Tag speichern
     t_min = t(idx);
-    diff = min_dist - target_dist;          %Diff zurückgeben, fzero will: Dieser Wert = 0
+    
+    %Differenz zurückgeben, wird minimiert
+    diff = min_dist - target_dist;          
 end
 
 function [val, term, dir] = swinger(t, y, target)
 
-    rS = y(1:2)';           %Als Zeilenvektor speichern
+    %Abstand berechnen
+    rS = y(1:2)';          
     rV = posVenus(t);
     dist = norm(rV - rS);
 
-    val = target - dist;                  %Toleranz, ode45 löst System nur an bestimmten Zeitschritten
-    term = 1;                             %Stoppen
+    %Stoppen, wenn Zieldistanz erreicht ist
+    val = target - dist;                  
+    term = 1;                             
     dir = -1;
 end
